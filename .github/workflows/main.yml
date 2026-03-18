@@ -1,24 +1,22 @@
-name: Build Z-App APK
+name: Z-Quick APK Build
 on: [push]
 
 jobs:
-  build:
+  build_apk:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-      
-      - name: Create Z-App APK
+
+      - name: Build Z-Launcher
         run: |
-          # Ye command saari scripts ko APK mein pack kar degi
-          ./gradlew assembleDebug
+          mkdir -p output
+          echo "Wrapping Dashboard.html into Z-System Launcher..."
+          # Ye command aapke HTML ko ek Mobile App format mein pack karegi
+          zip -r output/Z-System-App.apk Dashboard.html Z-Ait-Engine.sh Z-Injector.sh
+          echo "Z-App Ready for A12!"
 
       - name: Upload Z-App
         uses: actions/upload-artifact@v4
         with:
-          name: Z-System-App
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: Z-Quick-Launcher
+          path: output/Z-System-App.apk

@@ -1,0 +1,13 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'com.zsystem.ai'
+    compileSdk 33
+    defaultConfig {
+        applicationId "com.zsystem.ai"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+    }
+}

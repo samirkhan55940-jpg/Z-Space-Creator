@@ -1,0 +1,20 @@
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:text="Z-SYSTEM ACTIVE"
+        android:textColor="#00FF00"
+        android:textSize="30sp"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/btn_activate"
+        android:text="ACTIVATE GEMINI CPU"
+        android:backgroundTint="#00FF00"
+        android:textColor="#000000"/>
+</LinearLayout>
+

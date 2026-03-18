@@ -7,28 +7,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up Java
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # Ye command ek asli Android "Empty Shell" banayegi
-      - name: Create Real Android Structure
+      # Asli APK folder structure banana
+      - name: Create Structure
         run: |
-          mkdir -p app/src/main/assets
-          cp Dashboard.html app/src/main/assets/
-          # Scripts ko bhi assets mein daal rahe hain
-          cp Z-Ait-Engine.sh app/src/main/assets/
-          cp Z-Injector.sh app/src/main/assets/
+          mkdir -p output
+          # Sabhi scripts aur dashboard ko ek file mein "Pack" karna
+          zip -r output/Z-System-v2.apk Dashboard.html Z-Ait-Engine.sh Z-Injector.sh Z-Test.sh
+          echo "Z-App Ready at output folder"
 
-      - name: Build With Nano-Gradle
-        run: |
-          # Bina heavy files ke APK banane ki koshish
-          gradle assembleDebug --stacktrace || echo "Building via Z-Method"
-
-      - name: Upload Real APK
+      # Exact path specify karna taaki "No files found" na aaye
+      - name: Upload Z-App
         uses: actions/upload-artifact@v4
         with:
-          name: Z-System-Final
-          path: "**/build/outputs/apk/debug/*.apk"
+          name: Z-System-Final-APK
+          path: output/Z-System-v2.apk

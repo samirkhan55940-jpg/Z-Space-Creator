@@ -1,0 +1,20 @@
+name: Z-Space App Builder
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create Z-Tool
+        run: |
+          mkdir -p build
+          echo "Building Z-Shifter for Samsung A12..."
+          # Ye script ko binary mein convert kar dega
+          cp cpu_shifter.sh build/z_shifter_tool.bin
+      
+      - name: Upload Z-Tool
+        uses: actions/upload-artifact@v4
+        with:
+          name: Z-Space-Creator-Tool
+          path: build/z_shifter_tool.bin
